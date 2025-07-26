@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Factura de Bolsas - Minoristas</title>
+    <link rel="stylesheet" href="estilos.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h2>Factura de Bolsas - Minoristas</h2>
+
+    <label>Nombre del cliente:</label>
+    <input type="text" id="cliente" />
+
+    <label>Tipo de bolsa:</label>
+    <select id="tipoBolsa" onchange="actualizarSubtipos()">
+      <option value="">-- Selecciona --</option>
+      <option value="rollos">Rollos</option>
+      <option value="2k">Bolsa 2 kilos</option>
+      <option value="3k">Bolsa 3 kilos</option>
+      <option value="5k">Bolsa 5 kilos</option>
+      <option value="10k">Bolsa 10 kilos</option>
+      <option value="15k">Bolsa 15 kilos</option>
+      <option value="25k">Bolsa 25 kilos</option>
+      <option value="5x8">Bolsa 5x8.</option>
+      <option value="6x9">Bolsa 6x9.</option>
+      <option value="7x10">Bolsa 7x10.</option>
+      <option value="8x12">Bolsa 8x12.</option>
+      <option value="10x14">Bolsa 10x14.</option>
+      <option value="basura">Bolsa de basura</option>
+      <option value="hielo">Bolsa de hielo</option>
+      <option value="boli">Bolsa boli</option>
+      <option value="Cuero de vaca">Cuero de vaca</option>
+      <option value="Vasos">Vasos</option>
+      <option value="Pitillos">Pitillos</option>
+      <option value="Cucharas">Cucharas</option>
+      <option value="Trinches">Trinches</option>
+      <option value="Cuchillos">Cuchillos</option>
+      <option value="Porta comida">Porta comida</option>
+      <option value="Porta hamburguesas">Porta hamburguesas</option>
+      <option value="Contenedor">Contenedor</option>
+      <option value="Vasos soperos">Vasos soperos</option>
+      <option value="Platos">Platos</option>
+    </select>
+
+    <label>Comprar por (und/millar)</label>
+    <select id="comprarPor">
+      <option value="">-- Selecciona --</option>
+      <option value="millar">Completa</option>
+      <option value="unidad">Unidad</option>
+    </select>
+
+    <label>Subtipo / Marca:</label>
+    <select id="subtipoBolsa" onchange="actualizarPrecio()"></select>
+
+    <label>Cantidad:</label>
+    <input type="number" id="cantidad" min="1" />
+
+    <p><strong>Precio unitario:</strong> $<span id="precioUnitario">0</span></p>
+
+    <button onclick="agregarProducto()">Agregar al recibo</button>
+    <button onclick="generarRecibo()">Generar recibo</button>
+    <button onclick="imprimirRecibo()">🖨️ Imprimir solo recibo</button>
+    <button onclick="exportarExcel()">Exportar historial a Excel</button>
+
+    <table id="tablaProductos" style="display: none">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Subtipo</th>
+          <th>Cantidad</th>
+          <th>Precio unitario</th>
+          <th>Total</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3 id="totalGeneral"></h3>
+
+    <div id="recibo"></div>
+
+    <hr />
+    <h2>Historial de Facturas</h2>
+    <table id="tablaHistorial">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Total</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>
